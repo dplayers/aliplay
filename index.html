@@ -25,6 +25,9 @@ function GetQueryString(name)
      if(r!=null)return  unescape(r[2]); return null;
 }
 var ldgurl = GetQueryString("url");
+
+var isMobile = navigator.userAgent.match(/iPad|iPhone|Android|Linux|iPod/i) != null;
+if(isMobile==false){
 var player = new Aliplayer({
          id: "playerCnt",
      "source":ldgurl,
@@ -44,12 +47,11 @@ playsinline: false,
 }, 
 function (player) {
       console.log("The player is created");
-  }
- );
-try{ 
-//document.getElementById('liryCN').style.height = parent.MacPlayer.Height + 'px';  
+	  }
+);}else{
+	var html = '<video id="media" src="' + ldgurl + '" poster="https://tva3.sinaimg.cn/large/5e700bd4ly1g3nuwp4fhpg20jq0dwjrw.gif" width="100%" height="100%" webkit-playsinline="true" preload="meta" controls="controls"></video>';
+    document.getElementById('playerCnt').innerHTML = html;
 }
-catch(e){}
 </script>
 
 <div style="display:none">
